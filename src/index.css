@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.input-style {
+  @apply w-full border px-3 py-2 rounded-md outline-none focus:ring focus:ring-blue-200;
+  @apply w-full px-3 py-2 border rounded focus:outline-none focus:ring;
+
+}
