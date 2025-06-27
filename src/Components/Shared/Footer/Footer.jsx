@@ -1,6 +1,6 @@
 import React from "react";
-import { FaFacebook, FaYoutube } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa";
+import logo from "../../../assets/logo.png"
 
 const Footer = () => {
   return (
@@ -8,8 +8,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* About HobbyNest */}
         <div>
-          <h2 className="text-xl font-bold text-[#64aab4] mb-3">HobbyNest</h2>
-          <p className="text-sm">
+           {/* Logo */}
+                    <div className="flex items-center space-x-2">
+                      <img className="w-24 h-16" src={logo} alt="logo" />
+                    </div>
+          <p className="text-sm mt-3">
             HobbyNest is your local hub to discover, join, or create hobby
             groups. Connect with like-minded people and grow your passions
             together.
@@ -23,15 +26,10 @@ const Footer = () => {
             <a href="/" className="hover:text-[#64aab4] transition">
               Home
             </a>
-            <a href="/groups" className="hover:text-[#64aab4] transition">
+            <a href="/allGroups" className="hover:text-[#64aab4] transition">
               Groups
             </a>
-            <a href="/explore" className="hover:text-[#64aab4] transition">
-              Explore
-            </a>
-            <a href="/about" className="hover:text-[#64aab4] transition">
-              About Us
-            </a>
+           
           </nav>
         </div>
 
@@ -40,25 +38,25 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
           <div className="flex space-x-4">
             <a
-              href="https://twitter.com"
+              href="https://github.com/Sadia126/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 transition"
             >
               
-              <FaXTwitter className="w-6 h-6" />
+              <FaGithub  className="w-6 h-6" />
             </a>
             <a
-              href="https://youtube.com"
+              href="https://www.linkedin.com/in/umme-sadia-sayti-35bb47362/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 transition"
             >
              
-              <FaYoutube  className="w-6 h-6"/>
+              <FaLinkedin  className="w-6 h-6"/>
             </a>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/umme.sadia.sayti"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 transition"

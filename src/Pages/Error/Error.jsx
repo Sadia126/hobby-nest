@@ -4,7 +4,7 @@ import animationData from "../../assets/404.json";
 
 const Error = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-[#f0f8ff]">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 ">
       <Lottie
         animationData={animationData}
         style={{ height: "300px", width: "300px" }}

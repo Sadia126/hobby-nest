@@ -15,13 +15,14 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
-
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "All Groups", path: "/allGroups" },
-    { name: "Create Group", path: "/create-group" },
-    { name: "My Groups", path: "/myGroup" },
-    // { name: "404", path: "/error" },
+    ...(user ? [
+      { name: "Create Group", path: "/create-group" },
+      { name: "My Groups", path: "/myGroup" },
+      { name: "Dashboard", path: "/dashboard" },
+    ] : []),
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -33,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="  sticky top-0 z-50">
+    <nav className="  sticky top-0 z-50 bg-[#6fa7af]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-fit py-4">
           {/* Logo */}
@@ -57,7 +58,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={` transition hover:border-b-2 border-[#64aab4]  px-2 py-1 rounded ${
+                className={` transition hover:border-b-2 text-white border-[#64aab4]  px-2 py-1 rounded ${
                   isActive(link.path) ? "border-b-2 border-[#64aab4]" : ""
                 }`}
               >
@@ -104,7 +105,6 @@ const Navbar = () => {
               </>
             ) : (
               <div className="relative">
-                
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="flex items-center gap-2 cursor-pointer"
@@ -118,7 +118,6 @@ const Navbar = () => {
 
                 {dropdownOpen && (
                   <div className="absolute right-0 mt-2 w-56 bg-white border shadow-md z-10 p-4 rounded">
-
                     {/* Show username */}
                     <div className="mb-2 text-gray-700 font-medium">
                       {user?.displayName || ""}
@@ -151,72 +150,75 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-           
-         <div>
-            <label className="swap swap-rotate cursor-pointer">
-              <input
-                type="checkbox"
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    document.documentElement.setAttribute("data-theme", "dark");
-                    localStorage.setItem("theme", "dark");
-                  } else {
-                    document.documentElement.setAttribute(
-                      "data-theme",
-                      "light"
-                    );
-                    localStorage.setItem("theme", "light");
-                  }
-                }}
-                defaultChecked={localStorage.getItem("theme") === "dark"}
-              />
 
-              {/* Sun icon (light mode) */}
-              <IoMdSunny className="swap-on w-8 h-8 text-yellow-500" />
-
-              {/* Moon icon (dark mode) */}
-              <IoMoon className="swap-off w-8 h-8 text-gray-700" />
-            </label>
-             {!user ? (
-              <>
-                <Link
-                  to="/login"
-                  className="bg-[#64aab4] text-white px-4 py-2 rounded mx-4 mt-2 text-center"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Login
-                </Link>
-              </>
-            ) : (
-              <div className="bg-gray-100 p-4 rounded text-sm">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <img
-                    src={user?.photoURL}
-                    alt="user"
-                    className="w-9 h-9 rounded-full border border-gray-300"
-                  />
-                </button>
-
-                {/* Show username */}
-                <div className="mb-2 text-gray-700 font-medium">
-                  {user?.displayName || ""}
-                </div>
-
-                <button
-                  onClick={() => {
-                    setMenuOpen(false);
-                    handleLogout();
+            <div>
+              <label className="swap swap-rotate cursor-pointer">
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "dark"
+                      );
+                      localStorage.setItem("theme", "dark");
+                    } else {
+                      document.documentElement.setAttribute(
+                        "data-theme",
+                        "light"
+                      );
+                      localStorage.setItem("theme", "light");
+                    }
                   }}
-                  className="flex items-center gap-2 text-red-600 mt-2 hover:underline cursor-pointer"
-                >
-                  <FaSignOutAlt /> Log Out
-                </button>
-              </div>
-            )}
-         </div>
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                />
+
+                {/* Sun icon (light mode) */}
+                <IoMdSunny className="swap-on w-8 h-8 text-yellow-500" />
+
+                {/* Moon icon (dark mode) */}
+                <IoMoon className="swap-off w-8 h-8 text-gray-700" />
+              </label>
+              {!user ? (
+                <>
+                  <Link
+                    to="/login"
+                    className="bg-[#64aab4] text-white px-4 py-2 rounded mx-4 mt-2 text-center"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Login
+                  </Link>
+                </>
+              ) : (
+                <div className="bg-gray-100 p-4 rounded text-sm">
+                  <button
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <img
+                      src={user?.photoURL}
+                      alt="user"
+                      className="w-9 h-9 rounded-full border border-gray-300"
+                    />
+                  </button>
+
+                  {/* Show username */}
+                  <div className="mb-2 text-gray-700 font-medium">
+                    {user?.displayName || ""}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      setMenuOpen(false);
+                      handleLogout();
+                    }}
+                    className="flex items-center gap-2 text-red-600 mt-2 hover:underline cursor-pointer"
+                  >
+                    <FaSignOutAlt /> Log Out
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

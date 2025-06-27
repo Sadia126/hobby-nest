@@ -9,6 +9,9 @@ import AllGroups from "../Pages/AllGroup/AllGroups";
 import GroupDetails from "../Pages/GroupDetails/GroupDetails";
 import MyGroups from "../Pages/MyGroup/MyGroup";
 import Error from "../Pages/Error/Error";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import DashboardOverview from "../Pages/Dashboard/DashboardOverview";
+import DashAllGroup from "../Pages/Dashboard/DashAllGroup";
 
 export const router = createBrowserRouter([
   {
@@ -39,5 +42,24 @@ export const router = createBrowserRouter([
           element:<PrivateRoute><MyGroups></MyGroups></PrivateRoute>
         }
     ]
-  },
+  },{
+          path:"/dashboard",
+          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+          errorElement:<Error></Error>,
+          children:[{
+            path:"/dashboard",
+            element: <DashboardOverview></DashboardOverview>
+          },{
+            path:"/dashboard/addGroup",
+            element:<PrivateRoute><CreateGroup></CreateGroup></PrivateRoute>
+          },{
+            path:"/dashboard/allGroup",
+            element:<PrivateRoute><DashAllGroup></DashAllGroup></PrivateRoute>
+          },{
+            path:"/dashboard/myGroup",
+            element:<PrivateRoute><MyGroups></MyGroups></PrivateRoute>
+          }
+          ]
+
+        }
 ]);

@@ -29,16 +29,16 @@ const Banner = () => {
         onClickThumb={onClickThumb}
       >
         <div>
-          <img src={img1} alt="Slide 1" />
+          <img src={img4} alt="Slide 1" className="carousel-image" />
         </div>
         <div>
-          <img src={img2} alt="Slide 1" />
+          <img src={img2} alt="Slide 2" className="carousel-image" />
         </div>
         <div>
-          <img src={img3} alt="Slide 1" />
+          <img src={img3} alt="Slide 3" className="carousel-image" />
         </div>
         <div>
-          <img src={img4} alt="Slide 1" />
+          <img src={img1} alt="Slide 4" className="carousel-image" />
         </div>
       </Carousel>
     </div>

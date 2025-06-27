@@ -3,6 +3,7 @@ import Banner from '../Banner/Banner';
 import FeaturedGroup from '../featuredGroups/featuredGroups';
 import FaqSection from '../FaqSection/FaqSection';
 import Testimonial from '../Testimonials/Testimonial';
+import Newsletter from '../Newsletter/Newsletter';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
            <FeaturedGroup></FeaturedGroup>
            <FaqSection></FaqSection>
            <Testimonial></Testimonial>
+           <Newsletter></Newsletter>
         </>
     );
 };
